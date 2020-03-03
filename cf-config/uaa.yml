@@ -1,0 +1,20 @@
+scim:
+  groups:
+    geode.cluster.read: 'Read the configuration'
+    geode.cluster.write: 'Change the configuration'
+    geode.data.read: 'Read region data'
+    geode.data.write: 'Write region data'
+  users:
+    - datauser|datauser|openid,geode.data.read,geode.data.write,geode.data.read
+    - clusteruser|clusteruser|openid,geode.cluster.read,geode.cluster.write
+    - geodeuser|geodeuser|openid,geode.cluster.read,geode.cluster.write,geode.data.read,geode.data.write
+
+oauth:
+  clients:
+    pulse:
+      id: pulse
+      name: Pulse
+      secret: pulsesecret
+      authorized-grant-types: password,implicit,authorization_code,refresh_token
+      scope: openid,geode.cluster.read,geode.cluster.write,geode.data.read,geode.data.write
+      redirect-uri: http://localhost:7070/pulse
