@@ -1,7 +1,7 @@
 scim:
   groups:
-    geode.cluster.read: 'Read the configuration'
-    geode.cluster.write: 'Change the configuration'
+    geode.cluster.read: 'Read the cluster configuration'
+    geode.cluster.write: 'Change the cluster configuration'
     geode.data.read: 'Read region data'
     geode.data.write: 'Write region data'
   users:
