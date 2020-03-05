@@ -52,8 +52,10 @@
   stop the Gradle task
   using `CTRL-C`.
 
-  It is possible to configure a different port,
-  but I have not tried that.
+- Launch the UAA server at a chosen port
+
+      # In the uaa dir
+      ./gradlew -Pport=PORT run
 
 ## Admin (the UAA CLI)
 
@@ -137,7 +139,7 @@ A group represents a permission.
 
       uaac token owner get CLIENTNAME USERNAME
 
-  This commend (in either form) does several things:
+  This command (in either form) does several things:
   - Adds a "user" context
     to your `~/.uaac.yml` file,
     with the same name as the user
