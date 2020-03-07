@@ -29,7 +29,7 @@ oauth:
       # The URL that UAA will redirect the user's browser to after the user
       # gives permissions. Also, the redirect_uri query parameter in each
       # authorization request from the client must match this value exactly.
-      redirect-uri: http://localhost:8080/oauth2/authorization/uaa
+      redirect-uri: http://localhost:7070/pulse/login/oauth2/code/uaa
       # What kinds of flows this client can use to get tokens.
       authorized-grant-types: password,implicit,authorization_code,refresh_token
       # What kinds of permissions this client can request on behalf of users.
