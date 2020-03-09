@@ -26,7 +26,17 @@
 - In your config dir, create a `uaa.yml` file.
 
 - In your `uaa.yml` file, configure the groups, users, and clients.
+- Generate keys for the UAA server:
 
+      openssl genrsa -out signingkey.pem 2048
+      openssl rsa -in signingkey.pem -pubout -out verificationkey.pem
+
+  Export the keys to `JWT_TOKEN_SIGNING_KEY` and `JWT_TOKEN_VERIFICATION_KEY`
+
+      export JWT_TOKEN_SIGNING_KEY=$(cat signingkey.pem)
+      export JWT_TOKEN_VERIFICATION_KEY=$(cat verificationkey.pem)
+
+  You can also specify these in the `uaa.yml` files as `jwt.token.signing-key` and `jwt.token.verification-key`
 ## Running the UAA Server
 
 - Set `JAVA_HOME` (UAA requires Java 11)
