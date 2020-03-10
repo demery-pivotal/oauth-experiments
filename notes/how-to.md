@@ -57,6 +57,10 @@
       # In the uaa dir
       ./gradlew -Pport=PORT run
 
+- Find the UAA log files
+
+      lsof -c java | grep uaa-
+
 ## Admin (the UAA CLI)
 
 - Connect the UAA CLI to UAA:
