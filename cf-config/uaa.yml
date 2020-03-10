@@ -7,18 +7,18 @@ scim:
     # perhaps other flows), UAA presents a page that displays the description of
     # each requested permission as a checkbox, which allows the user to select
     # which permissions to grant.
-    geode.cluster.read: 'Read the cluster configuration'
-    geode.cluster.write: 'Change the cluster configuration'
-    geode.data.read: 'Read region data'
-    geode.data.write: 'Write region data'
+    CLUSTER:READ: 'Read the cluster configuration'
+    CLUSTER:WRITE: 'Change the cluster configuration'
+    DATA:READ: 'Read region data'
+    DATA:WRITE: 'Write region data'
   users:
     # The format is: username|password|comma-separated-group-names
     # The list of groups is essentially the user's list of permissions. When UAA
     # requests permissions from a user, it presents only the permissions listed
     # here.
-    - datauser|datauser|openid,geode.data.read,geode.data.write,geode.data.read
-    - clusteruser|clusteruser|openid,geode.cluster.read,geode.cluster.write
-    - geodeuser|geodeuser|openid,geode.cluster.read,geode.cluster.write,geode.data.read,geode.data.write
+    - datauser|datauser|openid,CLUSTER:READ,DATA:READ,DATA:WRITE
+    - clusteruser|clusteruser|openid,CLUSTER:READ,CLUSTER:WRITE
+    - geodeuser|geodeuser|openid,CLUSTER:READ,CLUSTER:WRITE,DATA:READ,DATA:WRITE
 
 oauth:
   clients:
@@ -29,10 +29,10 @@ oauth:
       # The URL that UAA will redirect the user's browser to after the user
       # gives permissions. Also, the redirect_uri query parameter in each
       # authorization request from the client must match this value exactly.
-      redirect-uri: http://localhost:8080/oauth2/authorization/uaa
+      redirect-uri: http://localhost:7070/pulse/login/oauth2/code/uaa
       # What kinds of flows this client can use to get tokens.
       authorized-grant-types: password,implicit,authorization_code,refresh_token
       # What kinds of permissions this client can request on behalf of users.
       # When a client requests permissions on behalf of a user, UAA presents
       # only the permissions listed here.
-      scope: openid,geode.cluster.read,geode.cluster.write,geode.data.read,geode.data.write
+      scope: openid,CLUSTER:READ,CLUSTER:WRITE,DATA:READ,DATA:WRITE
