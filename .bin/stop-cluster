@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+gfsh -e 'stop server --dir server1'
+gfsh -e 'stop locator --dir locator1'

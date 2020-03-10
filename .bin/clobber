@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -rf locator1
+rm -rf server1
