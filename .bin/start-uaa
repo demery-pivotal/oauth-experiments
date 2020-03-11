@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# make sure we are in the script dir
+cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
+
+# create keys 
+openssl genrsa -out signingkey.pem 2048
+openssl rsa -in signingkey.pem -pubout -out verificationkey.pem
+
+# export env variables for keys
+export JWT_TOKEN_SIGNING_KEY=$(cat signingkey.pem)
+export JWT_TOKEN_VERIFICATION_KEY=$(cat verificationkey.pem)
+
+# set JAVA_HOME to Java 11 (mac OS)
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+#export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+# set UAA_CONFIG_PATH
+export UAA_CONFIG_PATH=$(pwd)../cf-config
+
+# run uaa
+cd ../uaa
+./gradlew run
+
