@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gfsh -e 'start locator --name locator1' -e 'start server --name server1'

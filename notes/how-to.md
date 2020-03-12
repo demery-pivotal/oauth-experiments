@@ -44,6 +44,13 @@
       # On MacOS
       export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
+- Create signing and verification keys and assign to environment variables
+
+      openssl genrsa -out signingkey.pem 2048
+      openssl rsa -in signingkey.pem -pubout -out verificationkey.pem
+      export JWT_TOKEN_SIGNING_KEY=$(cat signingkey.pem)
+      export JWT_TOKEN_VERIFICATION_KEY=$(cat verificationkey.pem)
+
 - Build the UAA server
 
       # In the uaa dir
@@ -66,6 +73,10 @@
 
       # In the uaa dir
       ./gradlew -Pport=PORT run
+
+- Find the UAA log files
+
+      lsof -c java | grep uaa-
 
 ## Admin (the UAA CLI)
 

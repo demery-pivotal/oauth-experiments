@@ -1,3 +1,6 @@
+# This example UAA configuration defines a Pulse client, several Geode-related
+# permissions, and some users with different Geode permissions.
+#
 # SCIM is a standard for representing (among other things) user identities and
 # permissions.
 scim:
@@ -19,7 +22,6 @@ scim:
     - datauser|datauser|openid,CLUSTER:READ,DATA:READ,DATA:WRITE
     - clusteruser|clusteruser|openid,CLUSTER:READ,CLUSTER:WRITE
     - geodeuser|geodeuser|openid,CLUSTER:READ,CLUSTER:WRITE,DATA:READ,DATA:WRITE
-
 oauth:
   clients:
     pulse:
