@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-gfsh -e 'start locator --name locator1' -e 'start server --name server1'
+# make sure we are in the script dir
+cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
+
+gfsh -e 'start locator --name locator1 --properties-file=gemfire.properties --J=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000' -e 'start server --name server1 --properties-file=gemfire.properties'
