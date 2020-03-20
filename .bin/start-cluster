@@ -3,4 +3,14 @@
 # make sure we are in the script dir
 cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 
+if [[ ! -d "locator1" ]]
+then
+  mkdir "locator1" && echo "locator1 dir created"
+fi
+
+if [[ ! -f "locator1/pulse.properties" ]]
+then
+  cp "pulse.properties" "locator1/pulse.properties" && echo "pulse.properties file copied to locator1 dir"
+fi
+
 gfsh -e 'start locator --name locator1 --properties-file=gemfire.properties --J=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000' -e 'start server --name server1 --properties-file=gemfire.properties'
