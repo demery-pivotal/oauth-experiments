@@ -3,7 +3,7 @@
 # make sure we are in the script dir
 cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 
-# create keys 
+# create keys
 openssl genrsa -out signingkey.pem 2048
 openssl rsa -in signingkey.pem -pubout -out verificationkey.pem
 
@@ -11,8 +11,16 @@ openssl rsa -in signingkey.pem -pubout -out verificationkey.pem
 export JWT_TOKEN_SIGNING_KEY=$(cat signingkey.pem)
 export JWT_TOKEN_VERIFICATION_KEY=$(cat verificationkey.pem)
 
-# set JAVA_HOME to Java 11 (mac OS)
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+# set JAVA_HOME to Java 11
+if [[ $(uname) == "Linux" ]]
+then
+  java_lib="/usr/lib/jvm/"
+  export JAVA_HOME="${java_lib}$( ls ${java_lib} | grep -i "java-11")"
+else
+  export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+fi
+
+echo ${JAVA_HOME}
 
 # export spring profiles
 export SPRING_PROFILES="default,hsqldb"
