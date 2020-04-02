@@ -19,7 +19,7 @@ scim:
     # The list of groups is essentially the user's list of permissions. When UAA
     # requests permissions from a user, it presents only the permissions listed
     # here.
-    - datauser|datauser|openid,CLUSTER:READ,DATA:READ,DATA:WRITE
+    - datauser|datauser|openid,DATA:READ,DATA:WRITE
     - clusteruser|clusteruser|openid,CLUSTER:READ,CLUSTER:WRITE
     - geodeuser|geodeuser|openid,CLUSTER:READ,CLUSTER:WRITE,DATA:READ,DATA:WRITE
 oauth:
