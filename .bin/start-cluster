@@ -13,4 +13,10 @@ then
   cp "pulse.properties" "locator1/pulse.properties" && echo "pulse.properties file copied to locator1 dir"
 fi
 
-gfsh -e 'start locator --name locator1 --properties-file=gemfire.properties --J=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000' -e 'start server --name server1 --properties-file=gemfire.properties'
+locator_system_properties_array=(
+  --J=-Dlog4j.configurationFile=$(pwd)/log4j2-custom.xml
+  --J=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+)
+locator_system_properties=$(IFS=" "; echo "${locator_system_properties_array[*]}")
+
+gfsh -e "start locator --name locator1 --properties-file=gemfire.properties ${locator_system_properties}" -e "start server --name server1 --properties-file=gemfire.properties"
