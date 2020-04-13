@@ -5,3 +5,4 @@ cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 
 rm -rf locator1
 rm -rf server1
+rm -f signingkey.pem verificationkey.pem 
