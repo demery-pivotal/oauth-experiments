@@ -38,3 +38,7 @@ oauth:
       # When a client requests permissions on behalf of a user, UAA presents
       # only the permissions listed here.
       scope: openid,CLUSTER:READ,CLUSTER:WRITE,DATA:READ,DATA:WRITE
+      access-token-validity: 30
+      refresh-token-validity: 60
+      override: true
+      # autoapprove: true
