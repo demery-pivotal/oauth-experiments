@@ -3,15 +3,9 @@
 # make sure we are in the script dir
 cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
 
-if [[ ! -d "locator1" ]]
-then
-  mkdir "locator1" && echo "locator1 dir created"
-fi
+mkdir -p "locator1" && echo "locator1 dir created"
 
-if [[ ! -f "locator1/pulse.properties" ]]
-then
-  cp "pulse.properties" "locator1/pulse.properties" && echo "pulse.properties file copied to locator1 dir"
-fi
+cp -f "pulse.properties" "locator1/pulse.properties" && echo "pulse.properties file copied to locator1 dir"
 
 locator_system_properties_array=(
   --J=-Dlog4j.configurationFile=$(pwd)/log4j2-custom.xml
